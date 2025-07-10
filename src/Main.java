@@ -17,18 +17,13 @@ public class Main {
          7.Напишите метод, который заменяет все отрицательные числа в массиве на их абсолютные значения.
          */
         //1
-        int[] numbers1 = {5, 10, 15, 20};
-        printArrayLine(numbers1);
+        printArrayLine(new int[]{5, 10, 15, 20});
 
         //2
-        int[] arrayNumbers = {3, 7, 2, 9};
-        int result = sumArray(arrayNumbers);
-        System.out.println("Сумма элементов массива: " + result);
+        System.out.println("Сумма элементов массива: " + sumArray(new int[]  {3, 7, 2, 9}));
 
         //3
-        int[] numbers3 = {8, 3, 6, -2, 10};
-        int minValue = findMin(numbers3);
-        System.out.println("Минимум: " + minValue);
+        System.out.println("Минимум: " + findMin(new int[]{8, 3, 6, -2, 10}));
 
         //4
         String[] months = {
@@ -43,8 +38,7 @@ public class Main {
         System.out.println(Arrays.toString(numbers5));
 
         //6
-        int[] numbers = {1, 2, 3, 4, 2};
-        boolean result6 = hasDuplicates(numbers);
+        boolean result6 = hasDuplicates(new int[]{1, 2, 3, 4, 2});
         System.out.println("Есть дубликаты? " + result6);
 
         //7
@@ -53,14 +47,14 @@ public class Main {
         System.out.println(Arrays.toString(nums));
 
         /**
-        Многомерные массивы
-        1.Создайте двумерный массив 3x3, заполните его единицами на главной диагонали и нулями в остальных ячейках. Выведите массив
-        2.Напишите метод, вычисляющий сумму всех элементов в двумерном массиве
-        3.Реализуйте поиск максимального элемента в матрице и вывод его координат (строка, столбец)
-        4.Реализуйте проверку, является ли двумерный массив квадратным (количество строк = количеству столбцов)
-        5.Напишите метод, который находит сумму элементов каждой строки, минимальное и максимальное значение двумерного массива и выводит результаты
-        6.Создайте двумерный массив, заполните его так, чтобы элементы на четных позициях были 0, на нечетных — 1.
-        */
+         Многомерные массивы
+         1.Создайте двумерный массив 3x3, заполните его единицами на главной диагонали и нулями в остальных ячейках. Выведите массив
+         2.Напишите метод, вычисляющий сумму всех элементов в двумерном массиве
+         3.Реализуйте поиск максимального элемента в матрице и вывод его координат (строка, столбец)
+         4.Реализуйте проверку, является ли двумерный массив квадратным (количество строк = количеству столбцов)
+         5.Напишите метод, который находит сумму элементов каждой строки, минимальное и максимальное значение двумерного массива и выводит результаты
+         6.Создайте двумерный массив, заполните его так, чтобы элементы на четных позициях были 0, на нечетных — 1.
+         */
         //1
         createAndPrintDiagonalMatrix();
 
@@ -71,8 +65,7 @@ public class Main {
                 {7, 8, 9}
         };
 
-        int total = sum2DArray(matrix);
-        System.out.println("Сумма всех элементов: " + total);
+        System.out.println("Сумма всех элементов: " + sum2DArray(matrix));
 
         //3
         int[][] matrix3 = {
@@ -121,12 +114,12 @@ public class Main {
      */
     public static void printArrayLine(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
-            System.out.print(numbers[i]);
             if (i < numbers.length - 1) {
-                System.out.print(", ");
+                System.out.print(numbers[i] + ", ");
+            } else {
+                System.out.println(numbers[i]);
             }
         }
-        System.out.println();
     }
 
     /**
@@ -166,17 +159,16 @@ public class Main {
      * @return строка, содержащая месяцы через запятую
      */
     public static String getMonthsStartingWithM(String[] monthArray) {
-        StringBuilder result = new StringBuilder();
-
+        String result = "";
         for (String month : monthArray) {
             if (month.startsWith("М")) {
-                if (result.length() > 0) {
-                    result.append(", ");
+                if (!result.isEmpty()) {
+                    result += ", ";
                 }
-                result.append(month);
+                result += month;
             }
         }
-        return result.toString();
+        return result;
     }
 
     /**
@@ -214,7 +206,7 @@ public class Main {
     public static void replaceNegativesWithAbs(int[] array) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] < 0) {
-                array[i] = Math.abs(array[i]);
+                array[i] = -array[i];
             }
         }
     }
@@ -241,6 +233,7 @@ public class Main {
 
     /**
      * Назначение: Вычисляет сумму всех элементов в двумерном массиве.
+     *
      * @param matrix двумерный массив целых чисел
      * @return сумма всех элементов массива
      */
@@ -256,6 +249,7 @@ public class Main {
 
     /**
      * Назначение: Находит максимальный элемент в двумерной матрице и выводит его координаты.
+     *
      * @param matrix двумерный массив целых чисел
      */
     public static void findMaxInMatrix(int[][] matrix) {
@@ -273,19 +267,18 @@ public class Main {
             }
         }
 
-        System.out.printf("Максимальное значение: %d, координаты: строка %d, столбец %d%n", max, rowIndex, colIndex);
+        System.out.printf("Максимальное значение: %d, координаты: строка %d, столбец %d%n", max, rowIndex+1, colIndex+1);
     }
 
     /**
      * Назначение: Проверяет, является ли двумерный массив квадратным (одинаковое количество строк и столбцов).
+     *
      * @param matrix двумерный массив целых чисел
      * @return true, если массив квадратный; иначе false
      */
     public static boolean isSquareMatrix(int[][] matrix) {
-        int rowCount = matrix.length;
-
         for (int[] row : matrix) {
-            if (row.length != rowCount) {
+            if (row.length != matrix.length) {
                 return false;
             }
         }
@@ -297,6 +290,7 @@ public class Main {
      * Назначение: Для заданного двумерного массива:
      * - выводит сумму элементов каждой строки,
      * - находит минимальное и максимальное значение в массиве.
+     *
      * @param matrix двумерный массив целых чисел
      */
     public static void analyzeMatrix(int[][] matrix) {
@@ -329,6 +323,7 @@ public class Main {
      * Назначение: Создаёт двумерный массив и заполняет его по правилу:
      * элементы на чётных позициях (i + j чётное) = 0,
      * на нечётных позициях (i + j нечётное) = 1.
+     *
      * @param rows количество строк
      * @param cols количество столбцов
      * @return возвращает двумерный массив
@@ -345,6 +340,7 @@ public class Main {
 
     /**
      * Назначение: Печатает двумерный массив в консоль.
+     *
      * @param matrix двумерный массив целых чисел
      */
     public static void printMatrix(int[][] matrix) {
